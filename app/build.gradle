@@ -53,6 +53,7 @@ dependencies {
     implementation project(":search:search_presentation")
     implementation project(":news:news_presentation")
     implementation project(":splash:splash_presentation")
+    implementation project(":onBoard:onBoarding_presentation")
 
     implementation  AndroidX.coreKtx
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
