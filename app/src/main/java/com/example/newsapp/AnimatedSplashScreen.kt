@@ -16,7 +16,7 @@ import com.example.newsapp.navigation.Screen
 
 
 @Composable
-fun AnimatedSplashScreen(navController: NavHostController){
+fun AnimatedSplashScreen(navController: NavHostController ,isLottieFinished : (()-> Unit)? =null){
 
     Box(
         modifier = Modifier
@@ -31,7 +31,8 @@ fun AnimatedSplashScreen(navController: NavHostController){
             progress = { logoAnimationState.progress }
         )
         if (logoAnimationState.isAtEnd && logoAnimationState.isPlaying) {
-            navController.navigate(Screen.Home.route)
+            isLottieFinished?.invoke()
+//            navController.navigate(Screen.Home.route)
         }
     }
 

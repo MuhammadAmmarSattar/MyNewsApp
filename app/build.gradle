@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace 'com.example.newsapp'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.newsapp"
@@ -54,6 +54,7 @@ dependencies {
     implementation project(":news:news_presentation")
     implementation project(":splash:splash_presentation")
     implementation project(":onBoard:onBoarding_presentation")
+    implementation project(":core-ui")
 
     implementation  AndroidX.coreKtx
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
