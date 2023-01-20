@@ -31,6 +31,7 @@ import com.example.onboarding_presentation.state.descriptionList
 import com.example.onboarding_presentation.state.imageIdList
 import com.example.onboarding_presentation.state.titleList
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 

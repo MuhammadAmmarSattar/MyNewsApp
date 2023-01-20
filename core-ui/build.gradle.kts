@@ -1,6 +1,9 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id ("kotlin-kapt")
+    kotlin("kapt")
+    id ("com.google.dagger.hilt.android")
 }
 
 android {
@@ -45,6 +48,18 @@ dependencies {
     implementation(Compose.viewModelCompose)
     implementation(Compose.navigation)
     implementation(Compose.hiltNavigationCompose)
+
+    "kapt"(DaggerHilt.hiltCompiler)
+
+    "implementation"(Retrofit.okHttp)
+    "implementation"(Retrofit.retrofit)
+    "implementation"(Retrofit.okHttpLoggingInterceptor)
+//    "implementation"(Retrofit.moshiConverter)
+//    "implementation"(Moshi.moshiKotlin)
+    implementation(Retrofit.gsonConvertor)
+
+
+            implementation (DaggerHilt.hiltAndroid)
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
 
     implementation("androidx.core:core-ktx:1.7.0")
