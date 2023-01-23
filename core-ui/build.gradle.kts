@@ -86,4 +86,9 @@ dependencies {
     testImplementation (Testing.mockk)
     androidTestImplementation (Testing.hiltTesting)
 
+    // Room
+    kapt(Room.roomCompiler)
+    implementation(Room.roomKtx)
+    implementation(Room.roomRuntime)
+
 }
