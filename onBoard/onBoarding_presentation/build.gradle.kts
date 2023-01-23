@@ -1,6 +1,8 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
+    id ("com.google.dagger.hilt.android")
 }
 
 android {
@@ -42,19 +44,49 @@ dependencies {
     implementation(project(Modules.coreUi))
     implementation(ViewPager.viewPager)
     implementation(ViewPager.viewPagerIndicator)
+    // Android Compose
     implementation(Compose.activityCompose)
     implementation(Compose.ui)
     implementation(Compose.uiToolingPreview)
     implementation(Compose.material)
     implementation(Compose.viewModelCompose)
     implementation(Compose.navigation)
-    implementation(Compose.hiltNavigationCompose)
-    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
 
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.6.0")
-    implementation(Compose.material)
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    // Common lottie , coil
+    implementation(Common.lottieCompose)
+    implementation(Common.coilCompose)
+
+    // Dagger Hilt
+    kapt(DaggerHilt.hiltCompiler)
+    implementation (DaggerHilt.hiltAndroid)
+    implementation(DaggerHilt.hiltNavigationCompose)
+
+    // Retrofit Network
+    implementation(Retrofit.okHttp)
+    implementation(Retrofit.retrofit)
+    implementation(Retrofit.okHttpLoggingInterceptor)
+    implementation(Retrofit.gsonConvertor)
+
+    // AndroidX
+    implementation (AndroidX.lifecycleRuntimeKtx)
+    implementation(AndroidX.coreKtx)
+    implementation(AndroidX.appCompat)
+    implementation(Common.materialGoogle)
+
+    // AndroidX Component
+    implementation (AndroidX.androidViewModel)
+    implementation  (AndroidX.androidViewModelKtx)
+    implementation (AndroidX.appCompat)
+
+    // Testing
+    testImplementation(Testing.junit4)
+    androidTestImplementation(Testing.junitAndroidExt)
+    androidTestImplementation(Testing.espresso)
+    testImplementation (Testing.truth)
+    testImplementation (Testing.coroutines)
+    testImplementation (Testing.turbine)
+    testImplementation (Testing.composeUiTest)
+    testImplementation (Testing.mockk)
+    androidTestImplementation (Testing.hiltTesting)
+
 }

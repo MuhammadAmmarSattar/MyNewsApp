@@ -3,15 +3,22 @@ package com.example.newsapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavType
@@ -19,8 +26,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.core_ui.DarkGray
-import com.example.core_ui.Purple
+import com.example.core_ui.*
+import com.example.news_presentation.composables.NewsItemScreen
 import com.example.newsapp.navigation.Route
 import com.example.newsapp.navigation.Screen
 import com.example.newsapp.navigation.SetUpNavGraph
@@ -54,8 +61,8 @@ class MainActivity : ComponentActivity() {
                             Route.ON_SPLASH
                         } else Route.BLOG_OVERVIEW
                     ) {
-                        composable(route = Route.ON_SPLASH){
-                            AnimatedSplashScreen(navController , isLottieFinished = {
+                        composable(route = Route.ON_SPLASH) {
+                            AnimatedSplashScreen(navController, isLottieFinished = {
                                 navController.navigate(Route.ON_BOARDING)
                             })
                         }
@@ -66,7 +73,7 @@ class MainActivity : ComponentActivity() {
                                 lifecycleCoroutineScope = lifecycleScope,
                                 titleList = titleList,
                                 descriptionList = descriptionList,
-                                skipTo = Route.BLOG_OVERVIEW,
+                                skipTo = Route.ON_NEWS,
                                 properties = OnBoardingProperties(
                                     buttonColor = DarkGray,
                                     selectedDotColor = Purple,
@@ -80,6 +87,10 @@ class MainActivity : ComponentActivity() {
                                 )
                             )
                         }
+
+                        composable(Route.ON_NEWS){
+                            NewsItemScreen()
+                        }
                     }
                 }
             }
@@ -89,7 +100,15 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String) {
-    Text(text = "Android $name")
+
+    Scaffold(topBar = { TopAppBar(title = { Text(text = "News Headlines") }) }) {
+        NewsHeadlineItems()
+    }
+}
+
+@Composable
+fun NewsHeadlineItems() {
+
 }
 
 @Preview(showBackground = true)

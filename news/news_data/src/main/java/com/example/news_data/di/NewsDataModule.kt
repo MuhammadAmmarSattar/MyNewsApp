@@ -6,21 +6,37 @@ import com.example.news_domain.repository.NewsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
-import javax.inject.Singleton
 
-@InstallIn
+@InstallIn(SingletonComponent::class)
 @Module
 object NewsDataModule {
 
+
+//    @Provides
+//    fun provideNewsApiService(retrofit: Retrofit): NewsAPIService {
+//        return retrofit.create(NewsAPIService::class.java)
+//    }
+//
+//
+//    @Provides
+//    fun provideNewsRepository(newsApiService: NewsAPIService):NewsRepository{
+//        return NewsRepositoryImpl(newsApiService)
+//    }
+
+
     @Provides
-    fun provideProvider(retrofit: Retrofit):NewsAPIService{
+    fun provideNewsApiService(retrofit: Retrofit): NewsAPIService {
         return retrofit.create(NewsAPIService::class.java)
     }
 
 
     @Provides
-    fun provideNewsRepository(newsAPIService: NewsAPIService):NewsRepository{
-        return NewsRepositoryImpl(newsAPIService)
+    fun provideNewsRepository(newsApiService: NewsAPIService):NewsRepository{
+        return NewsRepositoryImpl(newsApiService)
     }
+
+
+
 }

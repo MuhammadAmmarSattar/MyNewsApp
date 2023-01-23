@@ -5,8 +5,9 @@ import com.example.news_domain.use_case.GetNewsArticleUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-@InstallIn
+@InstallIn(SingletonComponent::class)
 @Module
 object NewsDomainModule {
 
@@ -15,4 +16,6 @@ object NewsDomainModule {
     fun provideGetNewsUseCase(newsRepository: NewsRepository):GetNewsArticleUseCase{
         return GetNewsArticleUseCase(newsRepository)
     }
+
+
 }

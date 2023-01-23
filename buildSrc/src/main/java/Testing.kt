@@ -1,5 +1,9 @@
 object Testing {
     private const val junitVersion = "4.13.2"
+    private const val espressoVersion = "3.5.1"
+
+    const val espresso = "androidx.test.espresso:espresso-core:$espressoVersion"
+
     const val junit4 = "junit:junit:$junitVersion"
 
     private const val junitAndroidExtVersion = "1.1.3"

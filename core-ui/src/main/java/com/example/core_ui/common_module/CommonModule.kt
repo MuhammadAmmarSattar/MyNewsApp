@@ -12,7 +12,7 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-class CommonModule {
+object CommonModule {
 
     @Provides
     @Singleton
