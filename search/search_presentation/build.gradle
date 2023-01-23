@@ -36,6 +36,9 @@ android {
 }
 
 dependencies {
+    implementation project(":core-ui")
+    implementation project(":search:search_data")
+    implementation project(":search:search_domain")
 
     // Android Component
     implementation AndroidX.coreKtx
