@@ -1,10 +1,12 @@
 package com.example.news_presentation.composables
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.R
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,9 +27,9 @@ import coil.compose.rememberImagePainter
 import com.example.news_domain.model.Article
 
 @Composable
-fun NewsItemScreen(viewModel: NewsViewModel = hiltViewModel()) {
+fun NewsItemScreen(scrollState: LazyListState,viewModel: NewsViewModel = hiltViewModel()) {
     val res = viewModel.newsStateFlow.value
-    Scaffold(topBar = { TopAppBar(title = { Text(text = "News Headlines") }) }) {
+//    Scaffold(topBar = { TopAppBar(title = { Text(text = "News Headlines") }) }) {
         if (res.loading) {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator()
@@ -39,7 +41,7 @@ fun NewsItemScreen(viewModel: NewsViewModel = hiltViewModel()) {
             }
         }
         res.data?.let { articleList ->
-            LazyColumn {
+            LazyColumn(state = scrollState) {
                 items(articleList) {
                     NewsItem(article = it) {
 //                        Navigations()
@@ -47,7 +49,7 @@ fun NewsItemScreen(viewModel: NewsViewModel = hiltViewModel()) {
                 }
             }
         }
-    }
+//    }
 }
 
 @Composable

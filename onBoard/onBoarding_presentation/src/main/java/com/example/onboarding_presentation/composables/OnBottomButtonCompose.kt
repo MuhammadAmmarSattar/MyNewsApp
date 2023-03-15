@@ -14,6 +14,7 @@ import com.example.core_ui.spacing
 import androidx.compose.foundation.clickable
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.core_ui.fontSize
 
 
@@ -46,9 +47,8 @@ fun OnBottomButtonCompose(
 
 
         Row(
-            modifier = Modifier.fillMaxWidth().wrapContentHeight().padding(
-                horizontal = MaterialTheme.spacing.view_4x, vertical = MaterialTheme.spacing.view_4x
-            )
+            modifier = Modifier.wrapContentHeight().fillMaxWidth().padding(
+            ), horizontalArrangement = Arrangement.End
         ) {
 
             Text(
@@ -72,5 +72,11 @@ fun OnBottomButtonCompose(
         }
     }
 
+
+}
+
+@Preview
+@Composable
+fun ShowPreview(){
 
 }

@@ -1,14 +1,21 @@
 package com.example.newsapp
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -37,6 +44,9 @@ import com.example.onboarding_presentation.properties.OnBoardingProperties
 import com.example.onboarding_presentation.state.descriptionList
 import com.example.onboarding_presentation.state.imageIdList
 import com.example.onboarding_presentation.state.titleList
+import com.example.search_presentation.composable.ScrollableAppBar
+import com.example.search_presentation.composable.TopSearchBar
+import com.example.search_presentation.composable.viewModel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import java.net.URLEncoder
@@ -49,6 +59,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             NewsAppTheme {
+            val searchViewModel : SearchViewModel by viewModels()
+            val scrollState = rememberLazyListState()
+            val scrollUpState = searchViewModel.scrollUp.observeAsState()
+            searchViewModel.updateScrollPosition(scrollState.firstVisibleItemIndex)
                 val navController = rememberNavController()
                 val scaffoldState = rememberScaffoldState()
                 Scaffold(
@@ -89,10 +103,38 @@ class MainActivity : ComponentActivity() {
                         }
 
                         composable(Route.ON_NEWS){
-                            NewsItemScreen()
+                            Box() {
+                                NewsItemScreen(scrollState)
+                                ScrollableAppBar(scrollUpState = scrollUpState, title = "News Headlines")
                         }
                     }
                 }
+            }
+
+//                var title by remember {
+//                    mutableStateOf("")
+//                }
+//                TopSearchBar(
+//                    title,
+//                    label = "Search",
+//                    onTextChangeListener
+//                        = {
+//                        if (it.all { char ->
+//                                char.isLetter() || char.isWhitespace()
+//                            }) title = it
+//                    },
+//                    modifier = Modifier
+//                        .border(
+//                            BorderStroke(width = 2.dp, color = Color.Black),
+//                            shape = RoundedCornerShape(50)
+//                        )
+//                        .padding(horizontal = 5.dp)
+//                        .fillMaxWidth(),
+//                    isSingleLine = true,
+//                    onImeAction = {
+//
+//                    })
+
             }
         }
     }
@@ -111,11 +153,28 @@ fun NewsHeadlineItems() {
 
 }
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     NewsAppTheme {
-        Greeting("Android")
+        TopSearchBar(
+            "",
+            label = "Search",
+            onTextChangeListener = {
+
+            },
+            modifier = Modifier
+                .border(
+                    BorderStroke(width = 2.dp, color = Color.Black),
+                    shape = RoundedCornerShape(50.dp)
+                )
+                .padding(20.dp),
+            isSingleLine = true,
+            onImeAction = {
+
+            })
+
     }
 }
 
