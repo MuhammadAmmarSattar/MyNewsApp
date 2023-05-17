@@ -48,9 +48,6 @@ import com.example.search_presentation.composable.ScrollableAppBar
 import com.example.search_presentation.composable.TopSearchBar
 import com.example.search_presentation.composable.viewModel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import java.net.URLEncoder
-import java.nio.charset.StandardCharsets
 
 @ExperimentalComposeUiApi
 @AndroidEntryPoint
@@ -62,7 +59,9 @@ class MainActivity : ComponentActivity() {
             val searchViewModel : SearchViewModel by viewModels()
             val scrollState = rememberLazyListState()
             val scrollUpState = searchViewModel.scrollUp.observeAsState()
-            searchViewModel.updateScrollPosition(scrollState.firstVisibleItemIndex)
+//
+
+                searchViewModel.updateScrollPosition(scrollState.firstVisibleItemIndex)
                 val navController = rememberNavController()
                 val scaffoldState = rememberScaffoldState()
                 Scaffold(
@@ -105,7 +104,7 @@ class MainActivity : ComponentActivity() {
                         composable(Route.ON_NEWS){
                             Box() {
                                 NewsItemScreen(scrollState)
-                                ScrollableAppBar(scrollUpState = scrollUpState, title = "News Headlines")
+                                ScrollableAppBar(scrollUpState = scrollUpState, title = "News Headlines", viewModel = searchViewModel)
                         }
                     }
                 }

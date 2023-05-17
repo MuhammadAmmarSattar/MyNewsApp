@@ -1,5 +1,7 @@
 package com.example.news_presentation.composables
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.clickable
@@ -22,12 +24,14 @@ import com.example.core_ui.spacing
 import com.example.news_presentation.NewsViewModel
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
+import androidx.compose.runtime.State
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberImagePainter
 import com.example.news_domain.model.Article
 
 @Composable
-fun NewsItemScreen(scrollState: LazyListState,viewModel: NewsViewModel = hiltViewModel()) {
+fun NewsItemScreen(scrollState: LazyListState
+                   ,viewModel: NewsViewModel = hiltViewModel()) {
     val res = viewModel.newsStateFlow.value
 //    Scaffold(topBar = { TopAppBar(title = { Text(text = "News Headlines") }) }) {
         if (res.loading) {
@@ -49,6 +53,20 @@ fun NewsItemScreen(scrollState: LazyListState,viewModel: NewsViewModel = hiltVie
                 }
             }
         }
+//    val res1 = viewModel.searchFlow.value
+//    if (res1.loading) {
+//        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+//            CircularProgressIndicator()
+//        }
+//    }
+//    if (res1.error.isNotBlank()) {
+//        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+//            Text(text = res.error)
+//        }
+//    }
+//    res1.data?.let { articleList ->
+//        Log.e(TAG, "size=> ${articleList.size}" )
+//    }
 //    }
 }
 
@@ -59,7 +77,7 @@ fun NewsItem(article: Article, onClickListener: (String) -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .clickable {
-                onClickListener.invoke(article.title?:"ammar")
+                onClickListener.invoke(article.title ?: "ammar")
 
             }
             .wrapContentHeight()

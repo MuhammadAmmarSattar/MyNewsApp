@@ -16,4 +16,5 @@ class SearchDomainModule {
     fun provideSearchUseCase(searchRepository: SearchRepository):GetSearchArticleUseCase{
         return GetSearchArticleUseCase(searchRepository)
     }
+
 }

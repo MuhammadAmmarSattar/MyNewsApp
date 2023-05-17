@@ -6,4 +6,8 @@ interface NewsRepository {
 
     suspend fun getNewsArticle():List<Article>
 
+    suspend fun getSearchArticles(query:String):List<Article>
+
+
+
 }

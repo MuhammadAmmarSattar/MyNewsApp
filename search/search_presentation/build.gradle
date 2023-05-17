@@ -37,6 +37,11 @@ android {
 
 dependencies {
     implementation project(":core-ui")
+    implementation(project(":search:search_data"))
+    implementation(project(":search:search_domain"))
+
+    implementation(project(":news:news_presentation"))
+
     implementation "androidx.compose.material:material-icons-extended:$compose_ui_version"
     implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
     // Android Component

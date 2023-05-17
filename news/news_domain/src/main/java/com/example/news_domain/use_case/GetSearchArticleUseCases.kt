@@ -7,16 +7,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class GetNewsArticleUseCase (private val newsRepository:NewsRepository) {
+class GetSearchArticleUseCases @Inject constructor(private val newsRepository: NewsRepository) {
 
-    operator fun invoke():Flow<Resource<List<Article>>> = flow {
+    operator fun invoke(query:String): Flow<Resource<List<Article>>> = flow {
         emit(Resource.Loading())
         try {
-            emit(Resource.Success(data=newsRepository.getNewsArticle()))
-        }catch (e:Exception){
-            emit(Resource.Error(message = e.message.toString()))
+        emit(Resource.Success(newsRepository.getSearchArticles(query)))
+        }catch (e:java.lang.Exception){
+            emit(Resource.Error(e.message.toString()))
         }
     }
-
-
 }

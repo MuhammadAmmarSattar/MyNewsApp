@@ -17,6 +17,8 @@ import androidx.compose.material.icons.rounded.AttachMoney
 import androidx.compose.material.icons.rounded.Clear
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -24,11 +26,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.core_ui.Purple
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.news_presentation.NewsViewModel
+import com.example.search_presentation.composable.viewModel.SearchViewModel
 
 @ExperimentalComposeUiApi
 @Composable
@@ -38,13 +40,10 @@ fun TopSearchBar(
     onTextChangeListener: (String) -> Unit,
     modifier: Modifier = Modifier,
     isSingleLine: Boolean,
-    onImeAction: () -> Unit = {}
-
-
-) {
+    onImeAction: () -> Unit = {},
+    viewModel: SearchViewModel = hiltViewModel()
+    ) {
     val keyboardController = LocalSoftwareKeyboardController.current
-
-
 
         Box(
             modifier = Modifier
@@ -55,13 +54,13 @@ fun TopSearchBar(
                 .background(color = Color.White)
         ) {
 
+
             TextField(
                 value = valueState, placeholder = { Text(label, fontSize = 11.sp)},
                 onValueChange = onTextChangeListener,
                 modifier  = Modifier
-
                     .height(50.dp)
-                    .width(300.dp)
+                    .width(330.dp)
                     .border(
                         border = BorderStroke(2.dp, color = Color.Black),
                         shape = RoundedCornerShape(50)
@@ -91,6 +90,10 @@ fun TopSearchBar(
             )
 
         }
+
+//    val map = mutableMapOf<String,String>()
+//    map[Constant.apiKey]=Constant.KEY
+//    map[Constant.QUERY]=binding.searchTitle.text.toString()
 
 }
 

@@ -27,6 +27,8 @@ object NewsDataModule {
 //    }
 
 
+
+
     @Provides
     fun provideNewsApiService(retrofit: Retrofit): NewsAPIService {
         return retrofit.create(NewsAPIService::class.java)

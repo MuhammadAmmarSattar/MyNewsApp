@@ -16,4 +16,12 @@ class NewsRepositoryImpl(private val newsAPIService: NewsAPIService , private va
             newsDao.getNewsArticles()
         }
     }
+
+    override suspend fun getSearchArticles(query: String): List<Article> {
+        return try {
+            newsAPIService.getSearchArticles(query).articles.map { it.toDomainArticle() }
+        }catch (e:Exception){
+           emptyList<Article>()
+        }
+    }
 }

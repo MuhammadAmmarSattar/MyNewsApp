@@ -22,4 +22,5 @@ object SearchModule {
     fun provideSearchRepository(searchAPI: SearchAPI):SearchRepository
         = SearchRepositoryImpl(searchAPI)
 
+
 }

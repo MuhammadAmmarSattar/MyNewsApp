@@ -9,10 +9,10 @@ import javax.inject.Inject
 
 class GetSearchArticleUseCase @Inject constructor(private val searchRepository: SearchRepository) {
 
-    operator fun invoke(map: MutableMap<String, String>): Flow<Resource<List<Article>>> = flow {
+    operator fun invoke(query:String): Flow<Resource<List<Article>>> = flow {
         emit(Resource.Loading())
         try {
-        emit(Resource.Success(searchRepository.getSearchArticles(map)))
+        emit(Resource.Success(searchRepository.getSearchArticles(query)))
         }catch (e:java.lang.Exception){
             emit(Resource.Error(e.message.toString()))
         }

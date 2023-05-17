@@ -4,5 +4,5 @@ import com.example.search_domain.model.Article
 
 interface SearchRepository {
 
-    suspend fun getSearchArticles(map: MutableMap<String,String>):List<Article>
+    suspend fun getSearchArticles(query:String):List<Article>
 }
