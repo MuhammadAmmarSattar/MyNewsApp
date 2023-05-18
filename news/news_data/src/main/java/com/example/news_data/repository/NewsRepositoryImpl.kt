@@ -3,7 +3,7 @@ package com.example.news_data.repository
 import com.example.news_data.mapper.toDomainArticle
 import com.example.news_data.network.NewsAPIService
 import com.example.news_data.room.NewsDao
-import com.example.news_domain.model.Article
+import com.example.core_ui.model.Article
 import com.example.news_domain.repository.NewsRepository
 
 class NewsRepositoryImpl(private val newsAPIService: NewsAPIService , private val newsDao: NewsDao) : NewsRepository {

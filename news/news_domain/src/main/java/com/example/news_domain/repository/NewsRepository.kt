@@ -1,6 +1,6 @@
 package com.example.news_domain.repository
 
-import com.example.news_domain.model.Article
+import com.example.core_ui.model.Article
 
 interface NewsRepository {
 

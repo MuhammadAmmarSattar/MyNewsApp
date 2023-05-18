@@ -4,15 +4,15 @@ import com.example.core_ui.R
 
 
 val imageIdList = listOf(
-    R.drawable.ic_on_board_1,
-    R.drawable.ic_on_board_2,
-    R.drawable.ic_on_board_3,
+    R.drawable.weather_forecast,
+    R.drawable.press,
+    R.drawable.news,
 )
 
 val titleList = listOf(
-    "Blogging Review",
-    "Blog Beauty",
-    "Blog Creation"
+    "Weather Forecasting",
+    "Worldwide News",
+    "News Update"
 )
 
 val descriptionList = listOf(

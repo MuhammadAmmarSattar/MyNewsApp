@@ -1,7 +1,7 @@
 package com.example.search_data.mapper
 
+import com.example.core_ui.model.Article
 import com.example.search_data.model.ArticleDTO
-import com.example.search_domain.model.Article
 
 
 fun ArticleDTO.toDomainArticle(): Article {

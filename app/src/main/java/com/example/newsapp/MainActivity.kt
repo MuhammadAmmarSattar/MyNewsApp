@@ -34,9 +34,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.core_ui.*
+import com.example.core_ui.model.Article
 import com.example.news_presentation.composables.NewsItemScreen
 import com.example.newsapp.navigation.Route
-import com.example.newsapp.navigation.Screen
 import com.example.newsapp.navigation.SetUpNavGraph
 import com.example.newsapp.ui.theme.NewsAppTheme
 import com.example.onboarding_presentation.composables.OnBoardingScreen
@@ -56,11 +56,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             NewsAppTheme {
-            val searchViewModel : SearchViewModel by viewModels()
-            val scrollState = rememberLazyListState()
-            val scrollUpState = searchViewModel.scrollUp.observeAsState()
-//
-
+                val searchViewModel: SearchViewModel by viewModels()
+                val scrollState = rememberLazyListState()
+                val scrollUpState = searchViewModel.scrollUp.observeAsState()
+                val searchList = searchViewModel.searchA.observeAsState()
                 searchViewModel.updateScrollPosition(scrollState.firstVisibleItemIndex)
                 val navController = rememberNavController()
                 val scaffoldState = rememberScaffoldState()
@@ -101,39 +100,20 @@ class MainActivity : ComponentActivity() {
                             )
                         }
 
-                        composable(Route.ON_NEWS){
+                        composable(Route.ON_NEWS) {
                             Box() {
-                                NewsItemScreen(scrollState)
-                                ScrollableAppBar(scrollUpState = scrollUpState, title = "News Headlines", viewModel = searchViewModel)
+                                NewsItemScreen(scrollState,
+                                    searchList as State<List<Article>>
+                                )
+                                ScrollableAppBar(
+                                    scrollUpState = scrollUpState,
+                                    title = "News Headlines",
+                                    viewModel = searchViewModel
+                                )
+                            }
                         }
                     }
                 }
-            }
-
-//                var title by remember {
-//                    mutableStateOf("")
-//                }
-//                TopSearchBar(
-//                    title,
-//                    label = "Search",
-//                    onTextChangeListener
-//                        = {
-//                        if (it.all { char ->
-//                                char.isLetter() || char.isWhitespace()
-//                            }) title = it
-//                    },
-//                    modifier = Modifier
-//                        .border(
-//                            BorderStroke(width = 2.dp, color = Color.Black),
-//                            shape = RoundedCornerShape(50)
-//                        )
-//                        .padding(horizontal = 5.dp)
-//                        .fillMaxWidth(),
-//                    isSingleLine = true,
-//                    onImeAction = {
-//
-//                    })
-
             }
         }
     }
@@ -161,7 +141,6 @@ fun DefaultPreview() {
             "",
             label = "Search",
             onTextChangeListener = {
-
             },
             modifier = Modifier
                 .border(
@@ -173,27 +152,5 @@ fun DefaultPreview() {
             onImeAction = {
 
             })
-
     }
 }
-
-/*
-OnBoardingScreen(
-imageIdList = imageIdList,
-navController = navController,
-lifecycleCoroutineScope = lifecycleScope,
-titleList = titleList,
-descriptionList = descriptionList,
-skipTo = Route.BLOG_OVERVIEW,
-properties = OnBoardingProperties(
-buttonColor = DarkGray,
-selectedDotColor = Purple,
-imageContentScale = ContentScale.Crop,
-titleFontSize = 24.sp,
-descriptionFontSize = 16.sp,
-titleFontFamily = FontFamily.Default,
-descriptionFontFamily = FontFamily.Default,
-skipButtonName = stringResource(id = com.example.core_ui.R.string.skip),
-nextButtonName = stringResource(id = com.example.core_ui.R.string.next)
-)
-)*/

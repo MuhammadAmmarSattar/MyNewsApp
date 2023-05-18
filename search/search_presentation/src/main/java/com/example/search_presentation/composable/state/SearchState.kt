@@ -1,6 +1,6 @@
 package com.example.search_presentation.composable.state
 
-import com.example.search_domain.model.Article
+import com.example.core_ui.model.Article
 
 data class SearchState(
     val isLoading:Boolean=false,

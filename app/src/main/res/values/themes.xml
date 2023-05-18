@@ -2,6 +2,7 @@
 <resources>
 
     <style name="Theme.NewsApp" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/purple_700</item>
+        <item name="android:statusBarColor">@color/purple_500</item>
+        <item name="android:windowDisablePreview">true</item>
     </style>
 </resources>

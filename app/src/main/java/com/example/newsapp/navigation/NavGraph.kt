@@ -12,7 +12,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.newsapp.AnimatedSplashScreen
 
 @Composable
 fun SetUpNavGraph(navController: NavHostController){

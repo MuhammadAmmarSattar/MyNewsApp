@@ -39,6 +39,7 @@ dependencies {
     implementation(project(":core-ui"))
     implementation(project(":news:news_data"))
     implementation(project(":news:news_domain"))
+    implementation(project(":search:search_domain"))
 
     // Android Component
     implementation AndroidX.coreKtx

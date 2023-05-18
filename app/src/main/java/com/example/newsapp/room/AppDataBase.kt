@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.news_data.room.NewsDao
-import com.example.news_domain.model.Article
+import com.example.core_ui.model.Article
 
 @Database(entities = [Article::class] , version = 1, exportSchema = false)
 abstract class AppDataBase : RoomDatabase() {
